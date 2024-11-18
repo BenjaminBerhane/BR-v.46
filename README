@@ -1,0 +1,33 @@
+Lägg till en anteckning:
+
+Skriv en titel i textfältet "Write your note title here".
+Om du vill kan du också lägga till en beskrivning i textrutan under titeln.
+Klicka på "Add note"-knappen för att skapa anteckningen.
+Anteckningen visas i listan nedanför med:
+Titel.
+Beskrivning (om du skrev en).
+Datum och tid när anteckningen skapades.
+En knapp för att radera anteckningen.
+Hantera anteckningar:
+
+Om det inte finns några anteckningar visas texten: "You have no notes yet. Add your first note to get started!"
+Varje anteckning har en "Delete"-knapp som du kan klicka på för att ta bort just den anteckningen.
+Rensa alla anteckningar:
+
+Om du vill radera alla anteckningar samtidigt, klicka på knappen "Clear All Notes".
+Alla anteckningar försvinner från listan och sparas inte längre i webbläsaren.
+Funktioner och detaljer
+Felsökning:
+
+Om du försöker lägga till en anteckning utan att skriva en titel visas ett felmeddelande: "You must enter a note title".
+Fältet för titeln markeras med rött för att visa att det saknas en titel.
+Sparade anteckningar:
+
+Anteckningarna sparas i webbläsarens localStorage, vilket innebär att de finns kvar nästa gång du öppnar sidan.
+Responsiv design:
+
+Sidan är anpassad för både datorer och mobila enheter med en layout som automatiskt justeras till olika skärmstorlekar.
+Vad du kan använda sidan till
+Spara viktiga tankar och påminnelser.
+Hantera små projekt eller listor.
+Organisera idéer med titlar och korta beskrivningar.
