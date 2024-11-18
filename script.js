@@ -8,30 +8,29 @@ const noNotesMessage = document.getElementById("noNotesMessage");
 const errorMessage = document.getElementById("errorMessage");
 
 
-// Döljer Error Message
+// Hides the Error Message
 errorMessage.style.display = "none";
 
-// Hämtar sparade anteckningar från localStorage
+// Retrieves saved notes from localStorage
 function loadNotes() {
     const savedNotes = localStorage.getItem("notesAppData");  
     if (savedNotes) {
-        try { //Felhantering ifall det finns ett fel i localStorage
+        try { // Error handling in case there is an issue with localStorage
             const notes = JSON.parse(savedNotes);
-            notes.forEach((note) => createNoteDOM(note));
+            notes.forEach((note) => createNoteDOM(note));  // Creates DOM elements for each note
         } catch (error) {
             console.error("Error:", error);
         }
-        notes.forEach((note) => createNoteDOM(note)); //för varje note skapas DOM-element
     }
-    toggleNoNotesMessage(); // tar bort texten som säger att det inte finns notes i listan
+    toggleNoNotesMessage(); // Removes the message saying there are no notes in the list
 }
  
-// Sparar anteckningar till localStorage
+// Saves notes to localStorage
 function saveNotes(notes) {
     localStorage.setItem("notesAppData", JSON.stringify(notes));
 }
 
-// Hämtar alla anteckningar från DOM
+// Retrieves all notes from the DOM
 function getNotesFromDOM() {
     return Array.from(noteList.children).map((noteItem) => ({
         id: noteItem.dataset.id,
@@ -41,25 +40,25 @@ function getNotesFromDOM() {
     }));
 }
 
-// Visar eller döljer meddelandet "No Notes available"
+// Displays or hides the "No Notes available" message
 function toggleNoNotesMessage() {
-    noNotesMessage.style.display = noteList.children.length === 0 ? "block" : "none"; //kontrollerar om det finns anteckningar, om inte visas meddelandet
+    noNotesMessage.style.display = noteList.children.length === 0 ? "block" : "none"; // Checks if there are notes; if not, shows the message
 }
 
-// Visar felmeddelande
+// Displays the error message
 function showError(message) {
     errorMessage.innerText = message;
     errorMessage.style.display = "block";
     newNoteInput.style.borderColor = "red";
 }
 
-// Döljer felmeddelande
+// Hides the error message
 function hideError() {
     errorMessage.style.display = "none";
     newNoteInput.style.borderColor = "";
 }
 
-// Skapar och renderar en ny anteckning
+// Creates and renders a new note
 function createNoteDOM(note) {
     const { id, title, description, timestamp } = note;
 
@@ -68,13 +67,13 @@ function createNoteDOM(note) {
     newNote.dataset.id = id;
     newNote.dataset.timestamp = timestamp;
 
-    // Lägg till titel
+   // Add title
     const titleElement = document.createElement("span");
     titleElement.className = "note-title";
     titleElement.textContent = title;
     newNote.appendChild(titleElement);
 
-    // Lägg till beskrivning (om den finns)
+     // Add description (if it exists)
     if (description) {
         const descriptionElement = document.createElement("p");
         descriptionElement.className = "note-description";
@@ -82,18 +81,18 @@ function createNoteDOM(note) {
         newNote.appendChild(descriptionElement);
     }
 
-    // Lägg till datum
+    // Add date
     const timestampElement = document.createElement("p");
     timestampElement.className = "note-timestamp";
     const date = new Date(parseInt(timestamp));
     timestampElement.textContent = `Created: ${date.toLocaleString()}`;
     newNote.appendChild(timestampElement);
 
-    // Lägg till knappar
+     // Add buttons
     const buttonWrapper = document.createElement("div");
     buttonWrapper.className = "delete-button-wrapper";
 
-    // Ta bort anteckning
+    // Remove button
     const removeButton = document.createElement("button");
     removeButton.innerText = "Delete";
     removeButton.addEventListener("click", () => {
@@ -108,7 +107,7 @@ function createNoteDOM(note) {
     noteList.appendChild(newNote);
 }
 
-// Lägger till en ny anteckning och renderar den
+// Creates and appends a new note
 function addNewNote() {
     const title = newNoteInput.value.trim();
     const description = noteDescription.value.trim();
@@ -117,7 +116,7 @@ function addNewNote() {
         showError("You must enter a note title");
         return;
     }
-    // Döljer felmeddelandet igen efter att ett anteckning har blivit skapad
+    // Hides the error message again after a note is created
     hideError();
 
     const newNote = {
@@ -135,44 +134,32 @@ function addNewNote() {
     toggleNoNotesMessage();
 }
 
-// Lägg till klickhändelse för att skapa ny anteckning
+// Adds click event to create a new note
 addNoteButton.addEventListener("click", (event) => {
     event.preventDefault();
     addNewNote();
 });
 
-// Skapa "Clear All"-knappen
-
-// clearAllButton.id = "clearAllButton";
-// clearAllButton.textContent = "Clear All";
-// clearAllButton.style.display = "none"; // Döljer knappen initialt
-// document.body.appendChild(clearAllButton); // Lägger till knappen i DOM
-
-// Funktion för att hantera Clear All-knappen
+// Function to handle the Clear All button
 clearAllButton.addEventListener("click", () => {
-    localStorage.clear(); // Rensa localStorage
+    localStorage.clear(); 
     while (noteList.firstChild) {
-        noteList.removeChild(noteList.firstChild); // Rensa alla DOM-element
+        noteList.removeChild(noteList.firstChild); //Removes all DOM elements
     }
     toggleNoNotesMessage(); 
-    clearAllButton.style.display = "none"; // Döljer knappen efter den använts
+    clearAllButton.style.display = "none"; // Hides the button after it's used
 });
 
-// Uppdatera knappen beroende på om det finns anteckningar
+// Updates the button based on whether there are notes
 function toggleClearAllButton() {
     clearAllButton.style.display = noteList.children.length > 0 ? "block" : "none";
 }
 
-// Uppdatera befintliga funktioner
+// Update existing functions
 function toggleNoNotesMessage() {
     noNotesMessage.style.display = noteList.children.length === 0 ? "block" : "none";
-    toggleClearAllButton(); // Kontrollera Clear All-knappen
+    toggleClearAllButton(); //make sure the button is updated
 }
-
-// Lägg till detta i `loadNotes` för att visa knappen om det finns sparade anteckningar
-loadNotes();
-toggleClearAllButton();
-
 
 // Ladda anteckningar vid sidstart
 loadNotes();
