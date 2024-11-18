@@ -111,7 +111,7 @@ function createNoteDOM(note) {
 function addNewNote() {
     const title = newNoteInput.value.trim();
     const description = noteDescription.value.trim();
-
+    // Checks if the title is empty
     if (!title) {
         showError("You must enter a note title");
         return;
