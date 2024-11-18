@@ -1,0 +1,131 @@
+body {
+    font-family: monospace;
+    background-color: antiquewhite;
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(400px, 70%, 800px);
+}
+
+#errorMessage {
+    color: red;
+    background-color: whitesmoke;
+    align-self: left;
+    margin: 0;
+}
+
+#newNoteForm {
+    padding: 0;
+    width: clamp(200px, 70%, 800px);
+    display: contents;
+}
+
+#newNoteForm input, #newNoteForm textarea {
+    width: clamp(200px, 70%, 600px);
+    margin-top: 1rem;
+    padding: .5rem;
+}
+
+#newNoteDescription {
+    min-height: 2rem;
+    height: fit-content;
+    justify-content: top;
+}
+
+#Notes { /* container for Notes */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.848);
+    width: clamp(400px, 70%, 800px);
+    border-radius: 20px;
+    min-height: 200px;
+}
+
+#activeNotes {
+    color: black;
+    list-style: none;   
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.2rem 0 1rem;
+}
+
+#noNotesMessage {
+    display: block;
+    color: gray;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+    max-width: 70%;
+}
+
+li {
+    box-sizing: border-box;
+    border: 2px solid rgb(205, 202, 202);
+    background-color: white;
+    border-radius: 15px;
+    margin: 1rem;
+    padding:1rem;
+    min-width: 370px; /* min width of Note */
+}
+
+#buttonWrapper {
+    display: flex; /*gör så att knapparna ligger i rad*/
+    justify-content: flex-start;
+    gap: 1rem; 
+    margin-top: 1rem;
+}
+button {
+    border: 2px solid grey;
+    border-radius: 15px;
+    margin: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+    width: 4rem;
+}
+
+#removeButton {
+    background-color: red;  
+    color: white;
+}
+
+#clearAllButton {
+    border: 2px, solid, grey;
+    border-radius: 15px;
+    margin: 1rem;
+    padding:1rem;
+    width: 8rem;
+    background-color: red;  
+    color: white;
+}
+
+
+#addNoteButton {
+    border: 2px, solid, grey;
+    border-radius: 15px;
+    margin: 1rem;
+    padding:1rem;
+    width: 8rem;
+}
+
+#activeNotes li {
+    font-size: 20px;
+}
+#activeNotes li p {
+    font-size: 12px;
+    width: inherit;
+
+    /* long words wrap to the next line */
+    word-wrap: break-word;     
+    overflow-wrap: break-word; 
+    hyphens: auto;             
+}

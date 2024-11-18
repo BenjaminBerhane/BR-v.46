@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note List</title>
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><h1>Note List</h1></header>
+
+    <main>
+        <form
+        id="newNoteForm">
+            <input
+            type="text"
+            name="new-Note-input"
+            id="newNoteInput"
+            placeholder="Write your note title here">
+            <p id="errorMessage">You must enter a note title</p>
+            <textarea name="new-Note-description" id="newNoteDescription" placeholder="Description of note"></textarea>
+            <div id="buttonWrapper">
+                <button type="button" id="addNoteButton" value="Add Note">Add note</button>
+                <button type="button" id="clearAllButton" style="display: none;">Clear All Notes</button>
+            </div>       
+        </form>       
+    
+        <p id="felmeddelande"></p>
+        
+        <section id="Notes">
+            <!--  Notes-->
+            <p id="noNotesMessage">You have no notes yet. Add your first note to get started!</p>
+            <ul id = "activeNotes">
+                
+            </ul>
+
+        </section>
+
+    </main>  
+
+</body>
+</html>
